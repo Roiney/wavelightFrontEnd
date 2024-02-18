@@ -67,8 +67,12 @@ export const useApi = () => ({
       }
     });
     try {
-      const response = await apiGif.get(`server-gif/${filename}`);
-      console.log('response', response);
+      const encodedFilename = encodeURIComponent(filename);
+
+      const url = `server-gif/${encodedFilename}`;
+
+      const response = await apiGif.get(url);
+      console.log(response.data);
 
       return response.data;
     } catch (error) {

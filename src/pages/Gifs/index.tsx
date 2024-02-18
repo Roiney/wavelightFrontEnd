@@ -1,13 +1,15 @@
-import { ChangeEvent, useContext, useEffect, useState } from 'react';
+/* eslint-disable no-unused-vars */
+import { ChangeEvent, Key, useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { useApi } from '../../hooks/useApi';
-import './index.css';
 
+import './index.css';
 export const Gifs = () => {
+  const imagePath = './assents/nei_beal@hotmail.com/1708288829755_nioqd.gif';
   const auth = useContext(AuthContext);
   const api = useApi();
   const [responseMessage, setResponseMessage] = useState<string>('');
-  const [gifs, setGifs] = useState([]);
+  const [gifsData, setGifsData] = useState<any[]>([]);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -35,23 +37,47 @@ export const Gifs = () => {
             userId: gif.userId
           })
         );
-        const gifList = document.querySelector('.gif-list');
-
-        for (const gif of gifs) {
-          const gifFileName = await api.serverGifFileName(token, gif.filePath);
-          const listItem = document.createElement('li');
-          listItem.textContent = `Nome do arquivo do GIF: ${gifFileName}`;
-
-          if (gifList) {
-            gifList.appendChild(listItem);
-            console.log('Nome do arquivo do GIF:', gifFileName);
-          } else {
-            console.log('Nenhum GIF encontrado.');
-          }
-        }
+        gifs.forEach((gif: { filePath: any }) => {
+          console.log(gif.filePath);
+        });
+        setGifsData(gifs);
       } else {
         console.log('Nenhum GIF encontrado.');
       }
+    } catch (error) {
+      console.error('Erro ao buscar GIFs:', error);
+    }
+  };
+
+  const handleDownload = async (filePath: string) => {
+    try {
+      const token = localStorage.getItem('authToken');
+      if (!token) {
+        console.error('Token não encontrado no localStorage');
+        return;
+      }
+
+      const response = await api.serverGifFileName(token, filePath);
+
+      if (!response) {
+        console.error('Erro ao buscar arquivo:', response.statusText);
+        return;
+      }
+
+      const blob = new Blob([response], { type: 'image/gif' });
+
+      const url = window.URL.createObjectURL(blob);
+
+      // Criar um link de download
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'new_gif');
+      document.body.appendChild(link);
+      link.click();
+
+      // Limpa os recursos usados
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(link);
     } catch (error) {
       console.error('Erro ao buscar GIFs:', error);
     }
@@ -87,6 +113,7 @@ export const Gifs = () => {
         console.error('Erro ao enviar vídeo:', error);
         setResponseMessage('Erro ao enviar o vídeo');
       }
+      fetchGifs();
     }
   };
 
@@ -110,10 +137,18 @@ export const Gifs = () => {
       {responseMessage && <p className="response-message">{responseMessage}</p>}
 
       <h2>Biblioteca de GIFs</h2>
+      <img src={imagePath} alt="" />
+      <h1></h1>
       <div className="gif-library">
-        <ul className="gif-list"></ul>
+        <ul className="gif-list">
+          {gifsData.map((gif) => (
+            <li key={gif.id}>
+              <button onClick={() => handleDownload(gif.filePath)}>Download GIF {gif.id}</button>
+              <p>Criado em: {gif.createdAt}</p>
+            </li>
+          ))}
+        </ul>
       </div>
-
       <div>
         <button onClick={handlePreviousPage}>Página Anterior</button>
         <button onClick={handleNextPage}>Próxima Página</button>

@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Teste Técnico Wavelight</h1>
+        <h1>Desafio Wavelight</h1>
         <nav>
           <Link to="/">Home</Link>
           <Link to="/login">Login</Link>
