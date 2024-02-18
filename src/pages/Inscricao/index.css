@@ -1,0 +1,51 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9; /* Cor de fundo */
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff; /* Fundo branco para o formulário */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+  border-radius: 5px; /* Cantos arredondados */
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0 0 20px; /* Margem inferior para separar do conteúdo abaixo */
+  text-align: center; /* Centralizar o título */
+  color: #333; /* Cor do texto */
+}
+
+input[type='text'],
+input[type='password'] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px; /* Margem inferior entre os campos de entrada */
+  border: 1px solid #ccc; /* Borda cinza */
+  border-radius: 5px; /* Cantos arredondados */
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff; /* Cor do botão */
+  color: #fff; /* Cor do texto no botão */
+  border: none;
+  border-radius: 5px; /* Cantos arredondados */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transição suave de cor ao passar o mouse */
+}
+
+button:hover {
+  background-color: #0056b3; /* Cor de destaque ao passar o mouse */
+}
+
+.error-message {
+  color: red; /* Cor do texto de erro */
+  margin-top: 10px; /* Margem superior para separar do campo de entrada */
+}

@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+}
+
+nav a {
+  color: black;
+  display: inline-block;
+  margin: 0 10px;
+}

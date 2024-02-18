@@ -1,0 +1,51 @@
+/* Estilo para o container principal */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Estilo para o título principal */
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Estilo para o parágrafo de boas-vindas */
+.welcome-message {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Estilo para o input de arquivo */
+.label-wrapper {
+  cursor: pointer;
+  padding: 10px;
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.label-wrapper:hover {
+  background-color: #f0f0f0;
+}
+
+/* Estilo para a mensagem de resposta */
+.response-message {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Estilo para a biblioteca de GIFs */
+.gif-library {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.gif {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
