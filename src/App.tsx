@@ -20,6 +20,7 @@ function App() {
       <header>
         <h1>Teste Técnico Wavelight</h1>
         <nav>
+          <Link to="/">Home</Link>
           <Link to="/login">Login</Link>
           <Link to="/signup">Inscreva-se</Link>
           {auth.user && <button onClick={handleLogout}>Sair</button>}

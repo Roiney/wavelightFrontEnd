@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
+import './index.css';
 
 export const SignUp = () => {
   const auth = useContext(AuthContext);
